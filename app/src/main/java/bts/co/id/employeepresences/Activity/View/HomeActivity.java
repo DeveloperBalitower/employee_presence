@@ -39,6 +39,7 @@ public class HomeActivity extends BasickActivity
         setupUi();
         startUp();
         setupFirstFragment();
+        //Test
     }
 
     @Override
