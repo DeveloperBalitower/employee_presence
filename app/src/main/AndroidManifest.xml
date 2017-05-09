@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="bts.co.id.employeepresences">
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+
+    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="com.dev.cromer.jason.coverme.permission.MAPS_RECEIVE" />
+
+    <uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <uses-permission
+        android:name="android.permission.ACCESS_MOCK_LOCATION"
+        tools:ignore="MockLocation" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission
+        android:name="android.permission.WRITE_SECURE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+
+    <uses-feature android:name="android.hardware.location.network" />
+    <uses-feature android:name="android.hardware.location.gps" />
+    <uses-feature android:name="android.hardware.wifi" />
+    <uses-feature android:name="android.hardware.location.gps" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <application
+        android:name=".EmployeePresencesApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!--<receiver android:name=".BootCompletedIntentReceiver">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.intent.action.BOOT_COMPLETED" />-->
+        <!--</intent-filter>-->
+        <!--</receiver>-->
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version"
+            tools:replace="android:value" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAGPsxRiquu8N-4H64Z5QT98-uqfBZix1I" />
+
+        <activity
+            android:name=".Activity.View.MainActivity"
+            android:label="@string/app_name"
+            android:noHistory="true"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activity.View.HomeScreenDialogActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity
+            android:name=".Activity.View.LoginActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activity.View.HomeActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activity.View.HistoryListActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <receiver
+            android:name=".Receiver.GpsLocationReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.location.PROVIDERS_CHANGED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".Activity.View.GPSDialogActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Dialog">
+            <intent-filter>
+                <action android:name="bts.co.id.employeepresences.ShowNotification" />
+            </intent-filter>
+        </activity>
+
+        <!--<service-->
+        <!--android:name=".Services.LocationService"-->
+        <!--android:canRetrieveWindowContent="true"-->
+        <!--android:exported="false"-->
+        <!--android:label="Emmployee Presences"-->
+        <!--android:largeHeap="true"-->
+        <!--android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"-->
+        <!--android:process=":background">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.accessibilityservice.AccessibilityService" />-->
+        <!--</intent-filter>-->
+        <!--</service>-->
+        <!--xTrackingServices-->
+        <!--<service-->
+        <!--android:name=".Services.TrackingService"-->
+        <!--android:canRetrieveWindowContent="true"-->
+        <!--android:exported="false"-->
+        <!--android:label="Emmployee Presences"-->
+        <!--android:largeHeap="true"-->
+        <!--android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"-->
+        <!--android:process=":background">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.accessibilityservice.AccessibilityService" />-->
+        <!--</intent-filter>-->
+        <!--</service>-->
+        <service
+            android:name=".Services.TrackingService"
+            android:canRetrieveWindowContent="true"
+            android:enabled="true"
+            android:icon="@drawable/ic_launcher"
+            android:largeHeap="true"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+            android:process=":TrackServices">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+        </service>
+        <!--<service-->
+        <!--android:name=".Services.xLocationTrackingByGoogle"-->
+        <!--android:canRetrieveWindowContent="true"-->
+        <!--android:exported="false"-->
+        <!--android:label="Emmployee Presences"-->
+        <!--android:largeHeap="true"-->
+        <!--android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"-->
+        <!--android:process=":location_services"-->
+        <!--android:launchMode="singleTop"-->
+        <!--android:enabled="true">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.accessibilityservice.AccessibilityService" />-->
+        <!--</intent-filter>-->
+        <!--</service>-->
+        <receiver
+            android:name=".Receiver.ServiceStopReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:label="ServiceStopReceiver">
+            <intent-filter>
+                <action android:name="bts.co.id.employeepresences.Receiver.ServiceStopReceiver" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".Receiver.SensorRestarterLocationBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:label="RestartServiceWhenStopped">
+            <intent-filter>
+                <action android:name="RestartSensor" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".BroadcastReceiver.CheckOutReceiver"
+            tools:ignore="InnerclassSeparator">
+            <intent-filter>
+                <action android:name="bts.co.id.employeepresencest.UserCheckOutBroadCast">
+                </action>
+            </intent-filter>
+
+        </receiver>
+
+        <!--<service-->
+        <!--android:name=".Services.xTrackerService"-->
+        <!--android:canRetrieveWindowContent="true"-->
+        <!--android:exported="false"-->
+        <!--android:label="Emmployee Presences"-->
+        <!--android:largeHeap="true"-->
+        <!--android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"-->
+        <!--android:process=":background">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.accessibilityservice.AccessibilityService" />-->
+        <!--</intent-filter>-->
+        <!--</service>-->
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="0c6d761e6c26b229d477c4f80d8edae2a58578cd" />
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="0c6d761e6c26b229d477c4f80d8edae2a58578cd" />
+    </application>
+</manifest>
